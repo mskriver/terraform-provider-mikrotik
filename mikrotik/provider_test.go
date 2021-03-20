@@ -34,7 +34,7 @@ func testAccPreCheck(t *testing.T) {
 	}
 }
 
-func TestTtlToSeconds(t *testing.T) {
+func TestAccMikrotikProvider_TestTtlToSeconds(t *testing.T) {
 	tests := []struct {
 		expected int
 		input    string
@@ -56,7 +56,7 @@ func TestTtlToSeconds(t *testing.T) {
 	}
 }
 
-func TestUnmarshal(t *testing.T) {
+func TestAccMikrotikProvider_TestUnmarshal(t *testing.T) {
 	name := "testing script"
 	owner := "admin"
 	runCount := "3"
@@ -118,7 +118,7 @@ func TestUnmarshal(t *testing.T) {
 	}
 }
 
-func TestUnmarshalOnSlices(t *testing.T) {
+func TestAccMikrotikProvider_TestUnmarshalOnSlices(t *testing.T) {
 	name := "testing script"
 	owner := "admin"
 	allowed := "true"
@@ -186,7 +186,7 @@ func TestUnmarshalOnSlices(t *testing.T) {
 	}
 }
 
-func TestUnmarshal_ttlToSeconds(t *testing.T) {
+func TestAccMikrotikProvider_TestUnmarshal_ttlToSeconds(t *testing.T) {
 	ttlStr := "5m"
 	expectedTtl := ttlToSeconds(ttlStr)
 	testStruct := struct {
@@ -216,7 +216,7 @@ func TestUnmarshal_ttlToSeconds(t *testing.T) {
 	}
 }
 
-func TestMarshal(t *testing.T) {
+func TestAccMikrotikProvider_TestMarshal(t *testing.T) {
 	name := "test owner"
 	owner := "admin"
 	runCount := 3
@@ -247,7 +247,7 @@ func TestMarshal(t *testing.T) {
 	}
 }
 
-func TestMarshalStructWithoutTags(t *testing.T) {
+func TestAccMikrotikProvider_TestMarshalStructWithoutTags(t *testing.T) {
 	name := "test owner"
 	owner := "admin"
 	runCount := 3

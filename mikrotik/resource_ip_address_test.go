@@ -15,7 +15,7 @@ var originalInterface string = "ether1"
 var updatedIpAddress string = "192.168.2.1/24"
 var updatedInterface string = "ether2"
 
-func TestAccMikrotikIpAddress_create(t *testing.T) {
+func TestAccMikrotikResourceIpAddress_create(t *testing.T) {
 	resourceName := "mikrotik_ip_address.autotest"
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
@@ -35,7 +35,7 @@ func TestAccMikrotikIpAddress_create(t *testing.T) {
 	})
 }
 
-func TestAccMikrotikIpAddress_update(t *testing.T) {
+func TestAccMikrotikResourceIpAddress_update(t *testing.T) {
 	resourceName := "mikrotik_ip_address.autotest"
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
@@ -151,7 +151,7 @@ func testAccCheckMikrotikIpAddressDestroy(s *terraform.State) error {
 	return nil
 }
 
-func TestAddIpAddressAndDeleteIpAddress(t *testing.T) {
+func TestAccMikrotikResourceIpAddress_add_delete(t *testing.T) {
 	c := NewClient(GetConfigFromEnv())
 
 	address := "1.1.1.1/24"
@@ -204,7 +204,7 @@ func TestAddIpAddressAndDeleteIpAddress(t *testing.T) {
 	}
 }
 
-func TestAdd_Update_DeleteIpAddress(t *testing.T) {
+func TestAccMikrotikResourceIpAddress_add_update_delete(t *testing.T) {
 	c := NewClient(GetConfigFromEnv())
 
 	initialAddress := "1.1.1.1/24"
@@ -266,7 +266,7 @@ func TestAdd_Update_DeleteIpAddress(t *testing.T) {
 	}
 }
 
-func TestFindIpAddress_forNonExistingIpAddress(t *testing.T) {
+func TestAccMikrotikResourceIpAddress_find_nonexisting(t *testing.T) {
 	c := NewClient(GetConfigFromEnv())
 
 	ipaddrId := "Invalid id"
