@@ -31,6 +31,11 @@ func resourceIpFirewallAddressList() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"disabled": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 		},
 	}
 }
@@ -39,10 +44,11 @@ func resourceIpFirewallAddressListCreate(d *schema.ResourceData, m interface{}) 
 	address := d.Get("address").(string)
 	list := d.Get("list").(string)
 	comment := d.Get("comment").(string)
+	disabled := d.Get("disabled").(bool)
 
 	c := m.(mikrotikConfig)
 
-	addresslist, err := c.AddIpFirewallAddressList(address, list, comment)
+	addresslist, err := c.AddIpFirewallAddressList(address, list, comment, disabled)
 
 	if err != nil {
 		return err
@@ -77,8 +83,9 @@ func resourceIpFirewallAddressListUpdate(d *schema.ResourceData, m interface{}) 
 	address := d.Get("address").(string)
 	list := d.Get("list").(string)
 	comment := d.Get("comment").(string)
+	disabled := d.Get("disabled").(bool)
 
-	addresslist, err := c.UpdateIpFirewallAddressList(d.Id(), address, list, comment)
+	addresslist, err := c.UpdateIpFirewallAddressList(d.Id(), address, list, comment, disabled)
 
 	if err != nil {
 		return err
@@ -106,17 +113,19 @@ func writeStateIpFirewallAddressList(addresslist *IpFirewallAddressList, d *sche
 	d.Set("address", addresslist.Address)
 	d.Set("list", addresslist.List)
 	d.Set("comment", addresslist.Comment)
+	d.Set("disabled", addresslist.Disabled)
 	return nil
 }
 
 type IpFirewallAddressList struct {
-	Id      string `mikrotik:".id"`
-	Address string `mikrotik:".address"`
-	List    string `mikrotik:".list"`
-	Comment string `mikrotik:".comment"`
+	Id       string `mikrotik:".id"`
+	Address  string `mikrotik:".address"`
+	List     string `mikrotik:".list"`
+	Comment  string `mikrotik:".comment"`
+	Disabled bool
 }
 
-func (mikrotikClient mikrotikConfig) AddIpFirewallAddressList(address string, list string, comment string) (*IpFirewallAddressList, error) {
+func (mikrotikClient mikrotikConfig) AddIpFirewallAddressList(address string, list string, comment string, disabled bool) (*IpFirewallAddressList, error) {
 	c, err := mikrotikClient.getMikrotikClient()
 
 	if err != nil {
@@ -128,6 +137,7 @@ func (mikrotikClient mikrotikConfig) AddIpFirewallAddressList(address string, li
 		fmt.Sprintf("=address=%s", address),
 		fmt.Sprintf("=list=%s", list),
 		fmt.Sprintf("=comment=%s", comment),
+		fmt.Sprintf("=disabled=%s", boolToMikrotikBool(disabled)),
 	}
 
 	log.Printf("[INFO] Running the mikrotik command: `%s`", cmd)
@@ -175,7 +185,7 @@ func (mikrotikClient mikrotikConfig) FindIpFirewallAddressList(id string) (*IpFi
 	return &addresslist, nil
 }
 
-func (mikrotikClient mikrotikConfig) UpdateIpFirewallAddressList(id string, address string, list string, comment string) (*IpFirewallAddressList, error) {
+func (mikrotikClient mikrotikConfig) UpdateIpFirewallAddressList(id string, address string, list string, comment string, disabled bool) (*IpFirewallAddressList, error) {
 	c, err := mikrotikClient.getMikrotikClient()
 
 	if err != nil {
@@ -188,6 +198,7 @@ func (mikrotikClient mikrotikConfig) UpdateIpFirewallAddressList(id string, addr
 		fmt.Sprintf("=address=%s", address),
 		fmt.Sprintf("=list=%s", list),
 		fmt.Sprintf("=comment=%s", comment),
+		fmt.Sprintf("=disabled=%s", boolToMikrotikBool(disabled)),
 	}
 
 	log.Printf("[INFO] Running the mikrotik command: `%s`", cmd)

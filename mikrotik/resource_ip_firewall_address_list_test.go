@@ -186,16 +186,19 @@ func TestAccMikrotikResourceIpFirewallAddressList_add_delete(t *testing.T) {
 	address := "192.168.1.0/24"
 	list := "list1"
 	comment := "comment1"
+	disabled := false
 
 	expectedIpFirewallAddressList := &IpFirewallAddressList{
-		Address: address,
-		List:    list,
-		Comment: comment,
+		Address:  address,
+		List:     list,
+		Comment:  comment,
+		Disabled: disabled,
 	}
 	fwlist, err := c.AddIpFirewallAddressList(
 		address,
 		list,
 		comment,
+		disabled,
 	)
 
 	if err != nil {
@@ -216,6 +219,10 @@ func TestAccMikrotikResourceIpFirewallAddressList_add_delete(t *testing.T) {
 
 	if strings.Compare(fwlist.Comment, expectedIpFirewallAddressList.Comment) != 0 {
 		t.Errorf("The comment field do not match. actual: %v expected: %v", fwlist.Comment, expectedIpFirewallAddressList.Comment)
+	}
+
+	if fwlist.Disabled != expectedIpFirewallAddressList.Disabled {
+		t.Errorf("The disabled field do not match. actual: %v expected: %v", fwlist.Disabled, expectedIpFirewallAddressList.Disabled)
 	}
 
 	foundfwlist, err := c.FindIpFirewallAddressList(fwlist.Id)
@@ -244,17 +251,21 @@ func TestAccMikrotikResourceIpFirewallAddressList_add_update_delete(t *testing.T
 	updated_list := "list2"
 	initial_comment := "comment1"
 	updated_comment := "comment2"
+	initial_disabled := false
+	updated_disabled := true
 
 	expectedIpFirewallAddressList := &IpFirewallAddressList{
-		Address: updated_address,
-		List:    updated_list,
-		Comment: updated_comment,
+		Address:  updated_address,
+		List:     updated_list,
+		Comment:  updated_comment,
+		Disabled: updated_disabled,
 	}
 
 	init_fwlist, err := c.AddIpFirewallAddressList(
 		initial_address,
 		initial_list,
 		initial_comment,
+		initial_disabled,
 	)
 
 	if err != nil {
@@ -265,7 +276,7 @@ func TestAccMikrotikResourceIpFirewallAddressList_add_update_delete(t *testing.T
 		t.Errorf("The created ip firewall address-list does not have an Id: %v", init_fwlist)
 	}
 
-	updated_fwlist, err := c.UpdateIpFirewallAddressList(init_fwlist.Id, updated_address, updated_list, updated_comment)
+	updated_fwlist, err := c.UpdateIpFirewallAddressList(init_fwlist.Id, updated_address, updated_list, updated_comment, updated_disabled)
 
 	if err != nil {
 		t.Errorf("Error updating the ip firewall address-list with: %v", err)
@@ -281,6 +292,10 @@ func TestAccMikrotikResourceIpFirewallAddressList_add_update_delete(t *testing.T
 
 	if strings.Compare(updated_fwlist.Comment, expectedIpFirewallAddressList.Comment) != 0 {
 		t.Errorf("The comment field do not match. actual: %v expected: %v", updated_fwlist.Comment, expectedIpFirewallAddressList.Comment)
+	}
+
+	if updated_fwlist.Disabled != expectedIpFirewallAddressList.Disabled {
+		t.Errorf("The disabled field do not match. actual: %v expected: %v", updated_fwlist.Disabled, expectedIpFirewallAddressList.Disabled)
 	}
 
 	foundFwList, err := c.FindIpFirewallAddressList(updated_fwlist.Id)

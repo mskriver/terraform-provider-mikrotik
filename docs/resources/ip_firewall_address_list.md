@@ -9,6 +9,7 @@ resource "mikrotik_ip_firewall_address-list" "list_entry_1" {
   address = "1.1.1.1"
   list = "list1"
   comment = "test"
+  disabled = false
 }
 ```
 
@@ -17,6 +18,7 @@ resource "mikrotik_ip_firewall_address-list" "list_entry_1" {
 * address - (Required) The IP address or subnet of the entry to be created
 * list - (Required) Name of the list address-list which the address/subnet should be added to
 * comment - (Optional) Comment/description for the address-list entry
+* disabled - (Optional) Disable knob for address-list entry. Default value is "false"
 
 ## Attributes Reference
 
