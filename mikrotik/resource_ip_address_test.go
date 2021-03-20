@@ -176,15 +176,15 @@ func TestAddIpAddressAndDeleteIpAddress(t *testing.T) {
 	}
 
 	if strings.Compare(ipaddr.Address, expectedIpAddress.Address) != 0 {
-		t.Errorf("The address fields do not match. actual: %v expected: %v", ipaddr.Address, expectedIpAddress.Address)
+		t.Errorf("The address field do not match. actual: %v expected: %v", ipaddr.Address, expectedIpAddress.Address)
 	}
 
 	if strings.Compare(ipaddr.Interface, expectedIpAddress.Interface) != 0 {
-		t.Errorf("The interface fields do not match. actual: %v expected: %v", ipaddr.Interface, expectedIpAddress.Interface)
+		t.Errorf("The interface field do not match. actual: %v expected: %v", ipaddr.Interface, expectedIpAddress.Interface)
 	}
 
 	if strings.Compare(ipaddr.Network, expectedIpAddress.Network) != 0 {
-		t.Errorf("The network fields do not match. actual: %v expected: %v", ipaddr.Network, expectedIpAddress.Network)
+		t.Errorf("The network field do not match. actual: %v expected: %v", ipaddr.Network, expectedIpAddress.Network)
 	}
 
 	foundIpAddress, err := c.FindIpAddress(ipaddr.Id)
@@ -238,15 +238,15 @@ func TestAdd_Update_DeleteIpAddress(t *testing.T) {
 	}
 
 	if strings.Compare(updated_ipaddr.Address, expectedIpAddress.Address) != 0 {
-		t.Errorf("The address fields do not match. actual: %v expected: %v", updated_ipaddr.Address, expectedIpAddress.Address)
+		t.Errorf("The address field do not match. actual: %v expected: %v", updated_ipaddr.Address, expectedIpAddress.Address)
 	}
 
 	if strings.Compare(updated_ipaddr.Interface, expectedIpAddress.Interface) != 0 {
-		t.Errorf("The interface fields do not match. actual: %v expected: %v", updated_ipaddr.Interface, expectedIpAddress.Interface)
+		t.Errorf("The interface field do not match. actual: %v expected: %v", updated_ipaddr.Interface, expectedIpAddress.Interface)
 	}
 
 	if strings.Compare(updated_ipaddr.Network, expectedIpAddress.Network) != 0 {
-		t.Errorf("The network fields do not match. actual: %v expected: %v", updated_ipaddr.Network, expectedIpAddress.Network)
+		t.Errorf("The network field do not match. actual: %v expected: %v", updated_ipaddr.Network, expectedIpAddress.Network)
 	}
 
 	foundIpAddress, err := c.FindIpAddress(updated_ipaddr.Id)
