@@ -105,11 +105,11 @@ func testAccIpFirewallAddressListExists(resourceName string) resource.TestCheckF
 		fwlist, err := c.FindIpFirewallAddressList(rs.Primary.ID)
 
 		if err != nil {
-			return fmt.Errorf("Unable to get the ip address with error: %v", err)
+			return fmt.Errorf("Unable to get the ip firewall address-list with error: %v", err)
 		}
 
 		if fwlist == nil {
-			return fmt.Errorf("Unable to get the ip address")
+			return fmt.Errorf("Unable to get the ip firewall address-list")
 		}
 
 		if fwlist.Id == rs.Primary.ID {
