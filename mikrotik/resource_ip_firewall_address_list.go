@@ -136,7 +136,7 @@ func (mikrotikClient mikrotikConfig) AddIpFirewallAddressList(address string, li
 		"/ip/firewall/address-list/add",
 		fmt.Sprintf("=address=%s", address),
 		fmt.Sprintf("=list=%s", list),
-		fmt.Sprintf("=comment=\"%\"s", comment),
+		fmt.Sprintf("=comment=\"%s\"", comment),
 		fmt.Sprintf("=disabled=%s", boolToMikrotikBool(disabled)),
 	}
 
