@@ -487,7 +487,7 @@ func FormatIpFirewallFilterCommand(d *schema.ResourceData) []string {
 		cmd_string = append(cmd_string, "=chain="+d.Get("chain").(string))
 	}
 	if d.Get("comment") != "" {
-		cmd_string = append(cmd_string, "=comment="+d.Get("comment").(string))
+		cmd_string = append(cmd_string, "=comment=\""+d.Get("comment").(string)+"\"")
 	}
 	if d.Get("connection_bytes") != "" {
 		cmd_string = append(cmd_string, "=connection-bytes="+d.Get("connection_bytes").(string))
