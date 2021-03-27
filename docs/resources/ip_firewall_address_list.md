@@ -25,7 +25,7 @@ resource "mikrotik_ip_firewall_address-list" "list_entry_1" {
 ## Import Reference
 
 ```bash
-terraform import mikrotik_ip_address.list_entry_1 *d
+terraform import mikrotik_ip_firewall_address.list_entry_1 *d
 ```
 
 Last argument (*d) is a mikrotik internal id which can be obtained via CLI:
