@@ -122,7 +122,7 @@ type IpFirewallAddressList struct {
 	Address  string `mikrotik:".address"`
 	List     string `mikrotik:".list"`
 	Comment  string `mikrotik:".comment"`
-	Disabled bool
+	Disabled bool   `mikrotik:".disabled"`
 }
 
 func (mikrotikClient mikrotikConfig) AddIpFirewallAddressList(address string, list string, comment string, disabled bool) (*IpFirewallAddressList, error) {
