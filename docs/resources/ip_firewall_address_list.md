@@ -1,6 +1,6 @@
 # mikrotik_ip_address
 
-Creates a IPv4 ip firewall address-list entry on the mikrotik device
+Creates a IPv4 firewall address-list entry on the mikrotik device
 
 ## Example Usage
 
