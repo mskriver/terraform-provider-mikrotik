@@ -15,12 +15,6 @@ resource "mikrotik_ip_firewall_filter" "fw_filter1" {
 
 ## Argument Reference
 
-* address - (Required) The IP address or subnet of the entry to be created
-* list - (Required) Name of the list address-list which the address/subnet should be added to
-* comment - (Optional) Comment/description for the address-list entry
-* disabled - (Optional) Disable knob for address-list entry. Default value is "false"
-
-
 * action - (Optional) - Action for the firewall filter entry
 * address_list - (Optional)
 * address_list_timeout - (Optional)
