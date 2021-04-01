@@ -1,4 +1,4 @@
-# mikrotik_ip_address
+# mikrotik_ip_firewall_address-list
 
 Creates a IPv4 firewall address-list entry on the mikrotik device
 
