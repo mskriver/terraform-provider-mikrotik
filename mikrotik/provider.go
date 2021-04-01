@@ -40,6 +40,7 @@ func Provider() terraform.ResourceProvider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
+			"mikrotik_interface_gre":            resourceInterfaceGre(),
 			"mikrotik_ip_address":               resourceIpAddress(),
 			"mikrotik_ip_firewall_address_list": resourceIpFirewallAddressList(),
 			"mikrotik_ip_firewall_filter":       resourceIpFirewallFilter(),
