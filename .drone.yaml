@@ -1,0 +1,21 @@
+kind: pipeline
+type: kubernetes
+name: terraform-provider-mikrotik
+
+metadata:
+  namespace: default
+
+dns_config:
+  options:
+    - name: ndots
+      value: 1
+
+steps:
+  - name: build
+    image: golang:1.15
+    commands:
+      - make build
+  - name: unit_test
+    image: golan:1.15
+    commands:
+      - make testacc
