@@ -18,5 +18,12 @@ steps:
       - make build
   - name: unit test
     image: golang:1.15
+    environment:
+      MIKROTIK_HOST:
+        from_secret: MIKROTIK_HOST
+      MIKROTIK_USER:
+        from_secret: MIKROTIK_USER
+      MIKROTIK_PASSWORD:
+        from_secret: MIKROTIK_PASSWORD
     commands:
       - make testacc
