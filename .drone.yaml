@@ -5,6 +5,7 @@ name: terraform-provider-mikrotik
 metadata:
   namespace: default
 
+# Allows the pods to resolve domain names outside the k8s cluster
 dns_config:
   options:
     - name: ndots
