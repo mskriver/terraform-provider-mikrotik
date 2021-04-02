@@ -28,6 +28,8 @@ resource "mikrotik_interface_gre" "gre1" {
 
 ## Attributes Reference
 
+https://help.mikrotik.com/docs/display/ROS/GRE
+
 ## Import Reference
 
 ```bash
