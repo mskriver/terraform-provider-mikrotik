@@ -13,10 +13,10 @@ dns_config:
 
 steps:
   - name: build
-    image: golang:1.15
+    image: golang:1.15.11
     commands:
       - make build
-  - name: unit_test
-    image: golan:1.15
+  - name: unit test
+    image: golan:1.15.11
     commands:
       - make testacc
